@@ -1,5 +1,5 @@
 plugins {
-    alias(libs.plugins.android.application)
+    id("com.android.library")
     alias(libs.plugins.jetbrains.kotlin.android)
 
     id("kotlin-kapt")
@@ -11,11 +11,8 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "ir.sinanakhaei.retrofit"
         minSdk = 24
         targetSdk = 34
-        versionCode = 1
-        versionName = "1.0"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables {
@@ -82,4 +79,6 @@ dependencies {
     implementation(libs.gson)
     implementation(libs.okhttp.logging)
     implementation(libs.kotlinx.serialization.json)
+
+    implementation(libs.sandwich.retrofit)
 }

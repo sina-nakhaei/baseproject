@@ -1,6 +1,7 @@
 package ir.sinanakhaei.retrofit
 
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
+import com.skydoves.sandwich.retrofit.adapters.ApiResponseCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -58,6 +59,13 @@ internal object NetworkModule {
             .addConverterFactory(
                 json.asConverterFactory("application/json".toMediaType())
             )
+            .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
             .build()
+    }
+
+    @Provides
+    @Singleton
+    fun provideApiService(retrofit: Retrofit): ApiService {
+        return retrofit.create(ApiService::class.java)
     }
 }
