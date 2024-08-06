@@ -26,7 +26,6 @@ class MainActivity : ComponentActivity() {
             val viewModel: MyViewModel = hiltViewModel()
 
             SideEffect {
-                Log.d("sinatest", "onCreate:")
                 viewModel.getPost()
             }
 

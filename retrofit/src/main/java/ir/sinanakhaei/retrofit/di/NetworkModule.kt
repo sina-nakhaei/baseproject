@@ -1,11 +1,16 @@
-package ir.sinanakhaei.retrofit
+package ir.sinanakhaei.retrofit.di
 
+import android.content.Context
 import com.jakewharton.retrofit2.converter.kotlinx.serialization.asConverterFactory
 import com.skydoves.sandwich.retrofit.adapters.ApiResponseCallAdapterFactory
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
+import dagger.hilt.android.qualifiers.ApplicationContext
 import dagger.hilt.components.SingletonComponent
+import ir.sinanakhaei.retrofit.interceptors.errorhandling.ErrorHandlingInterceptor
+import ir.sinanakhaei.retrofit.interceptors.httprequest.HttpRequestInterceptor
+import ir.sinanakhaei.retrofit.interceptors.networkconnection.NetworkConnectionInterceptor
 import kotlinx.serialization.json.Json
 import okhttp3.Call
 import okhttp3.MediaType.Companion.toMediaType
@@ -25,15 +30,15 @@ internal object NetworkModule {
 
     @Provides
     @Singleton
-    fun okHttpCallFactory(): Call.Factory =
+    fun okHttpCallFactory(@ApplicationContext context: Context): Call.Factory =
         OkHttpClient.Builder()
             .addInterceptor(
                 HttpLoggingInterceptor()
-                    .apply {
-                        //only on debug mode
-                        setLevel(HttpLoggingInterceptor.Level.BODY)
-                    },
+                    .apply { setLevel(HttpLoggingInterceptor.Level.BODY) },
             )
+            .addInterceptor(HttpRequestInterceptor())
+            .addInterceptor(ErrorHandlingInterceptor())
+            .addInterceptor(NetworkConnectionInterceptor(context))
             .build()
 
 
@@ -41,6 +46,7 @@ internal object NetworkModule {
     @Singleton
     fun provideOkHttpClient(): OkHttpClient {
         return OkHttpClient.Builder()
+            .addInterceptor(HttpRequestInterceptor())
             .build()
     }
 
@@ -61,11 +67,5 @@ internal object NetworkModule {
             )
             .addCallAdapterFactory(ApiResponseCallAdapterFactory.create())
             .build()
-    }
-
-    @Provides
-    @Singleton
-    fun provideApiService(retrofit: Retrofit): ApiService {
-        return retrofit.create(ApiService::class.java)
     }
 }
