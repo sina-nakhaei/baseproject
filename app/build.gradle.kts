@@ -82,6 +82,7 @@ dependencies {
     implementation(project(":retrofit"))
 
     implementation(libs.sandwich.retrofit)
+    implementation (libs.timber)
 }
 
 kapt {
