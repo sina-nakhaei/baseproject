@@ -1,5 +1,6 @@
 package ir.sinanakhaei.retrofit.interceptors.errorhandling
 
+import com.skydoves.sandwich.StatusCode
 import okhttp3.Interceptor
 import okhttp3.Response
 import java.io.IOException
@@ -20,22 +21,22 @@ class ErrorHandlingInterceptor : Interceptor {
 
     private fun handleClientErrors(response: Response) {
         when (response.code) {
-            400 -> throw BadRequestException() // Bad Request
-            401 -> throw UnauthorizedException() // Unauthorized
-            403 -> throw ForbiddenException()    // Forbidden
-            404 -> throw NotFoundException()     // Not Found
-            408 -> throw RequestTimeoutException() // Request Timeout
-            429 -> throw RateLimitExceededException()  // Too Many Requests
+            StatusCode.BadRequest.code -> throw BadRequestException()
+            StatusCode.Unauthorized.code -> throw UnauthorizedException()
+            StatusCode.Forbidden.code -> throw ForbiddenException()
+            StatusCode.NotFound.code -> throw NotFoundException()
+            StatusCode.RequestTimeout.code -> throw RequestTimeoutException()
+            StatusCode.TooManyRequests.code -> throw RateLimitExceededException()
             else -> throw ClientErrorException(response.code)
         }
     }
 
     private fun handleServerErrors(response: Response) {
         when (response.code) {
-            500 -> throw InternalServerErrorException() // Internal Server Error
-            502 -> throw BadGatewayException()           // Bad Gateway
-            504 -> throw GatewayTimeoutException()       // Gateway Timeout
-            503 -> throw ServiceUnavailableException() // Service Unavailable
+            StatusCode.InternalServerError.code -> throw InternalServerErrorException()
+            StatusCode.BadGateway.code -> throw BadGatewayException()
+            StatusCode.GatewayTimeout.code -> throw GatewayTimeoutException()
+            StatusCode.ServiceUnavailable.code -> throw ServiceUnavailableException()
             else -> throw ServerErrorException(response.code)
         }
     }
