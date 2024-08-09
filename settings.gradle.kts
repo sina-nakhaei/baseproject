@@ -22,3 +22,4 @@ dependencyResolutionManagement {
 rootProject.name = "baseproject"
 include(":app")
 include(":retrofit")
+include(":database")

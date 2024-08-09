@@ -80,6 +80,7 @@ dependencies {
     implementation(libs.androidx.hilt.navigation.compose)
 
     implementation(project(":retrofit"))
+    implementation(project(":database"))
 
     implementation(libs.sandwich.retrofit)
     implementation (libs.timber)

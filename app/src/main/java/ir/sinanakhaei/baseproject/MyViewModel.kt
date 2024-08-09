@@ -3,6 +3,7 @@ package ir.sinanakhaei.baseproject
 import android.util.Log
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
+import com.example.database.model.PostEntity
 import com.skydoves.sandwich.message
 import com.skydoves.sandwich.onError
 import com.skydoves.sandwich.onException
@@ -19,7 +20,19 @@ class MyViewModel @Inject constructor(
     fun getPost() {
         viewModelScope.launch {
             val response = myRepo.getPosts()
-            response.onSuccess {}
+            response.onSuccess {
+                viewModelScope.launch {
+                    myRepo.insert(
+                        PostEntity(
+                            id = data.id,
+                            userId = data.userId,
+                            title = data.title,
+                            body = data.body
+                        )
+                    )
+                }
+
+            }
                 .onError {
                     statusCode
                     message()
