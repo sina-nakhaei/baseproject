@@ -81,6 +81,7 @@ dependencies {
 
     implementation(project(":retrofit"))
     implementation(project(":database"))
+    implementation(project(":datastore"))
 
     implementation(libs.sandwich.retrofit)
     implementation (libs.timber)
