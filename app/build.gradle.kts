@@ -1,5 +1,3 @@
-import com.android.build.gradle.internal.scope.ProjectInfo.Companion.getBaseName
-
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.jetbrains.kotlin.android)
@@ -10,7 +8,7 @@ plugins {
 
 android {
     namespace = "ir.sinanakhaei.baseproject"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "ir.sinanakhaei.baseproject"
@@ -45,7 +43,7 @@ android {
         compose = true
     }
     composeOptions {
-        kotlinCompilerExtensionVersion = "1.5.1"
+        kotlinCompilerExtensionVersion = "1.5.15"
     }
     packaging {
         resources {
