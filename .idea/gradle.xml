@@ -15,6 +15,7 @@
             <option value="$PROJECT_DIR$/datastore" />
             <option value="$PROJECT_DIR$/designsystem" />
             <option value="$PROJECT_DIR$/encryption" />
+            <option value="$PROJECT_DIR$/permission" />
             <option value="$PROJECT_DIR$/retrofit" />
           </set>
         </option>
