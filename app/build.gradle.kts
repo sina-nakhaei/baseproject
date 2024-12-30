@@ -80,6 +80,7 @@ dependencies {
     implementation(project(":retrofit"))
     implementation(project(":database"))
     implementation(project(":datastore"))
+    implementation(project(":permission"))
 
     implementation(libs.sandwich.retrofit)
     implementation (libs.timber)
