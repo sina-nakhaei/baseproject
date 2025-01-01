@@ -16,7 +16,6 @@ class MyRepo @Inject constructor(
 
     suspend fun insert(post: PostEntity) {
         val token = tokenKvs.getToken()
-        Log.d("sinatest", "insert: $token")
         postDao.insert(post)
     }
 }

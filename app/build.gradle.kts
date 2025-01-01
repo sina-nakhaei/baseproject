@@ -84,9 +84,6 @@ dependencies {
 
     implementation(libs.sandwich.retrofit)
     implementation (libs.timber)
-    implementation("io.github.ParkSangGwon:tedpermission-normal:3.4.2")
-//    implementation("io.github.ParkSangGwon:tedpermission-coroutine:3.4.2")
-    implementation("pub.devrel:easypermissions:3.0.0")
 }
 
 kapt {
