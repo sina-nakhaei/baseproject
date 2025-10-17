@@ -26,49 +26,7 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             BaseprojectTheme {
-                val permissionState = rememberPermissionComposeState()
                 Scaffold(modifier = Modifier.fillMaxSize()) { _ ->
-                    PermissionCompose(
-                        state = permissionState,
-                        permissions = listOf(
-                            android.Manifest.permission.ACCESS_FINE_LOCATION,
-                            android.Manifest.permission.READ_CONTACTS,
-                        ),
-                        showRationale = { proceed ->
-                            // Show rationale dialog
-                            AlertDialog(
-                                onDismissRequest = { /* Do nothing */ },
-                                title = { Text("Permissions Required") },
-                                text = { Text("We need access to for the app to function.") },
-                                confirmButton = {
-                                    Button(onClick = {
-                                        proceed()
-                                    }) {
-                                        Text("Proceed")
-                                    }
-                                },
-                                dismissButton = {
-                                    Button(onClick = {
-                                        permissionState.dismiss()
-                                    }) {
-                                        Text("Cancel")
-                                    }
-                                }
-                            )
-                        },
-                        onGranted = { println("All permissions granted") },
-                        onDenied = { deniedPermissions -> println("Permissions denied: $deniedPermissions") },
-                        onNeverAskAgain = { neverAskPermissions -> println("Never ask again for: $neverAskPermissions") },
-                        onAnyResult = { permissionState.dismiss() }
-                    )
-
-                    Text("Hello",
-                        modifier = Modifier
-                            .padding(200.dp)
-                            .clickable {
-//                                permissionState.trigger()
-                            }
-                    )
                 }
             }
         }
@@ -77,7 +35,7 @@ class MainActivity : ComponentActivity() {
     override fun onRequestPermissionsResult(
         requestCode: Int,
         permissions: Array<String>,
-        grantResults: IntArray
+        grantResults: IntArray,
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
 //        Permission.handleResult(requestCode, permissions, grantResults)
