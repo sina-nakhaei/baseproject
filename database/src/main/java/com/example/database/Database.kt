@@ -7,7 +7,7 @@ import com.example.database.model.PostEntity
 
 @Database(
     entities = [PostEntity::class],
-    version = 1,
+    version = DbConstants.VERSION,
 //    autoMigrations = [AutoMigration(from = 1, to = 2)],
     exportSchema = true,
 )
