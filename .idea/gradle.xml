@@ -16,10 +16,11 @@
             <option value="$PROJECT_DIR$/designsystem" />
             <option value="$PROJECT_DIR$/encryption" />
             <option value="$PROJECT_DIR$/permission" />
+            <option value="$PROJECT_DIR$/qrcodereader" />
             <option value="$PROJECT_DIR$/retrofit" />
+            <option value="$PROJECT_DIR$/videoplayer" />
           </set>
         </option>
-        <option name="resolveExternalAnnotations" value="false" />
       </GradleProjectSettings>
     </option>
   </component>
